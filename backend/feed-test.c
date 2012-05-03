@@ -4,6 +4,7 @@
 
 static char *apikey;
 static char *query = "batman";
+static char *search = "";
 static GMainLoop *loop;
 
 static GOptionEntry entries[] = {
@@ -20,6 +21,13 @@ static GOptionEntry entries[] = {
 		.arg = G_OPTION_ARG_STRING,
 		.arg_data = &query,
 		.description = "term to search",
+	},
+	{
+		.long_name = "search",
+		.short_name = 's',
+		.arg = G_OPTION_ARG_STRING,
+		.arg_data = &search,
+		.description = "search type: (movies [default], shows or episodes)",
 	},
         {
 		.long_name = NULL,
@@ -54,8 +62,26 @@ bail:
 gboolean
 test1(void *data)
 {
+	int searchInt;
+
+	if (0 == g_strcmp0("episodes", search))
+	{
+		g_print("search: episodes\n");
+		searchInt = GT_FEED_SEARCH_EPISODES;
+	}
+	else if (0 == g_strcmp0("shows", search))
+	{
+		g_print("search: shows\n");
+		searchInt = GT_FEED_SEARCH_SHOWS;
+	}
+	else
+	{
+		g_print("search: movies (default)\n");
+		searchInt = GT_FEED_SEARCH_MOVIES;
+	}
+
 	GtFeed *feed = g_object_new(GT_TYPE_FEED, "api-key", apikey, NULL);
-	if (!gt_feed_search(feed, GT_FEED_SEARCH_MOVIES, query, cb, NULL)) {
+	if (!gt_feed_search(feed, searchInt, query, cb, NULL)) {
 		g_main_loop_quit(loop);
 	}
         g_object_unref(feed);
