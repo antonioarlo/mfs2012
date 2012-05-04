@@ -17,6 +17,8 @@ main (int argc, char **argv)
         GError *error = NULL;
         GOptionContext *context;
 
+	gint number = 0;
+
         g_type_init ();
 
         context = g_option_context_new (" - Displays a greeting message");
@@ -28,7 +30,10 @@ main (int argc, char **argv)
 
         sample = gt_sample_new ();
         g_object_set (sample, "name", message, NULL);
+	g_object_set (sample, "number", 5, NULL);
         gt_sample_say_hello (sample);
+	g_object_get (sample, "number", &number, NULL);
+	g_print ("The number is: %d\n", number);
         g_object_unref (sample);
 
         return 0;
