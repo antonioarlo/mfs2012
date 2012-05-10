@@ -27,7 +27,7 @@ G_DEFINE_TYPE (GtSample, gt_sample, G_TYPE_OBJECT)
 enum {
         PROP_0,
         PROP_NAME,
-	PROP_NUMBER,
+        PROP_NUMBER,
 };
 
 #define GET_PRIVATE(o) \
@@ -35,7 +35,7 @@ enum {
 
 struct _GtSamplePrivate {
         gchar *name;
-	gint number;
+        gint number;
 };
 
 static void
@@ -48,7 +48,7 @@ gt_sample_get_property (GObject *object, guint property_id,
         case PROP_NAME:
                 g_value_set_string (value, self->priv->name);
                 break;
-	case PROP_NUMBER:
+        case PROP_NUMBER:
                 g_value_set_long (value, self->priv->number);
                 break;
         default:
@@ -66,9 +66,9 @@ gt_sample_set_property (GObject *object, guint property_id,
         case PROP_NAME:
                 gt_sample_set_name (self, g_value_get_string (value));
                 break;
-	case PROP_NUMBER:
-		gt_sample_set_number (self, g_value_get_long (value));
-		break;
+        case PROP_NUMBER:
+                gt_sample_set_number (self, g_value_get_long (value));
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
         }
@@ -99,8 +99,8 @@ gt_sample_class_init (GtSampleClass *klass)
                  g_param_spec_string ("name", "Your name", "The greeter",
                                       NULL,
                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-        
-	g_object_class_install_property
+
+        g_object_class_install_property
                 (object_class, PROP_NUMBER,
                  g_param_spec_long ("number", "A number", "A number as a example",
                                       0, 1000, 0,
@@ -132,7 +132,7 @@ gt_sample_set_name (GtSample *self, const gchar *name)
 void
 gt_sample_set_number (GtSample *self, const gint number)
 {
-	self->priv->number = number;
+        self->priv->number = number;
 }
 
 void
