@@ -197,7 +197,7 @@ query(GtFeedServer *self,
 	}
 }
 
-static void
+static gboolean
 method_call(GDBusConnection *connection,
 	    const gchar *sender,
 	    const gchar *object_path,
@@ -208,12 +208,16 @@ method_call(GDBusConnection *connection,
 	    gpointer data)
 {
 	GtFeedServer *self = GT_FEED_SERVER(data);
+	gboolean result = TRUE;
 
 	if (g_strcmp0(method_name, "Query") == 0) {
 		query(self, parameters, invocation);
 	} else {
 		g_object_unref(invocation);
+		result = FALSE;
 	}
+
+	return result;
 }
 
 

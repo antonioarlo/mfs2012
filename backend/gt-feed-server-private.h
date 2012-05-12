@@ -29,6 +29,7 @@ G_BEGIN_DECLS
 static const gchar interface_xml[] =
   "<node>"
   "  <interface name='org.mfs.Gtrakt.FeedServer'>"
+  "    <annotation name='org.freedesktop.DBus.GLib.Async' value=''/>"
   "    <method name='Query'>"
   "      <arg type='s' name='query' direction='in'/>"
   "      <arg type='i' name='type' direction='in'/>"
