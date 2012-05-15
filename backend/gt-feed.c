@@ -282,10 +282,59 @@ parse(GtFeed *self, SoupMessage *msg, GError **err)
 	const char *content = msg->response_body->data;
 	goffset length = msg->response_body->length;
 
+	GVariant *data = NULL;
+    GVariantBuilder *builder = NULL;
+    GVariant *newArray = NULL;
+    GVariantBuilder *builder2 = NULL;
+    GVariant *emptyString = g_variant_new("s", "");
+
+	GVariant *array = NULL;
+	GVariantIter *arrayIter = NULL;
+	GVariant *array2 = NULL;
+	GVariantIter *array2Iter = NULL;
+	GVariant *key = NULL;
+	GVariant *value = NULL;
+
 	if (!content || length <= 0)
 		return NULL;
 
-	return json_gvariant_deserialize_data(content, length, NULL, err);
+    array = json_gvariant_deserialize_data(content, length, NULL, err);
+
+    builder = g_variant_builder_new(G_VARIANT_TYPE("av"));
+
+    g_variant_get(array, "av", &arrayIter);
+    while (g_variant_iter_loop (arrayIter, "v", &array2))
+    {
+        builder2 = g_variant_builder_new(G_VARIANT_TYPE("a{sv}"));
+
+        g_variant_get(array2, "a{sv}", &array2Iter);
+
+        while (g_variant_iter_loop (array2Iter, "{sv}", &key, &value))
+        {
+            if (!g_variant_is_of_type(value, G_VARIANT_TYPE_MAYBE))
+            {
+                g_variant_builder_add(builder2, "{sv}", key, value);
+            }
+            else
+            {
+                g_variant_builder_add(builder2, "{sv}", key, emptyString);
+            }
+        }
+        g_variant_iter_free(array2Iter);
+
+        newArray = g_variant_new("a{sv}", builder2);
+        g_variant_builder_add(builder, "v", newArray);
+        g_variant_builder_unref(builder2);
+
+    }
+    g_variant_iter_free(arrayIter);
+
+    data = g_variant_new("av", builder);
+    g_variant_builder_unref(builder);
+
+    g_variant_unref(array);
+
+	return data;
 }
 
 GVariant *
