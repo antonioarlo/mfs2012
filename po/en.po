@@ -1,0 +1,65 @@
+# English translations for gtrakt package.
+# Copyright (C) 2012 THE gtrakt'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gtrakt package.
+# José Antonio S.A. <jose.antonio.sa@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gtrakt 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-22 23:28+0200\n"
+"PO-Revision-Date: 2012-05-22 23:30+0200\n"
+"Last-Translator:  <email@mastersoftwarelibre.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../backend/feed-service.c:37
+#, c-format
+msgid ""
+"Client connected.\n"
+"Peer credentials: %s\n"
+"Negotiated capabilities: unix-fd-passing=%d\n"
+msgstr ""
+"Client connected.\n"
+"Peer credentials: %s\n"
+"Negotiated capabilities: unix-fd-passing=%d\n"
+
+#: ../backend/feed-service.c:64
+#, c-format
+msgid ""
+"Couldn't register the feed server: %s\n"
+"Quitting..."
+msgstr ""
+"Couldn't register the feed server: %s\n"
+"Quitting..."
+
+#: ../backend/gt-feed-server.c:123
+#, c-format
+msgid "Error getting session bus: %s\n"
+msgstr "Error getting session bus: %s\n"
+
+#: ../backend/gt-feed-server.c:137
+#, c-format
+msgid "Error emitting signal: %s\n"
+msgstr "Error emitting signal: %s\n"
+
+#: ../backend/gt-feed-server.c:158
+#, c-format
+msgid "Couldn't parse gdbus node info: %s"
+msgstr "Couldn't parse gdbus node info: %s"
+
+#: ../backend/gt-feed-server.c:258
+msgid "No query was specified."
+msgstr "No query was specified."
+
+#: ../backend/gt-feed-server.c:267
+msgid "Search type is not valid."
+msgstr "Search type is not valid."
+
+#: ../backend/gt-feed-server.c:279
+msgid "The specified query is invalid."
+msgstr "The specified query is invalid."

@@ -1,5 +1,8 @@
 #include <glib.h>
 
+#include <config.h>
+#include <glib/gi18n.h>
+
 #include "gt-feed-server.h"
 
 static GMainLoop *loop;
@@ -31,9 +34,9 @@ print_peer_credentials(GDBusConnection *connection)
         else
                 s = g_credentials_to_string(credentials);
 
-        g_print("Client connected.\n"
+        g_print(_("Client connected.\n"
                 "Peer credentials: %s\n"
-                "Negotiated capabilities: unix-fd-passing=%d\n",
+                "Negotiated capabilities: unix-fd-passing=%d\n"),
                 s,
                 g_dbus_connection_get_capabilities(connection) &
                 G_DBUS_CAPABILITY_FLAGS_UNIX_FD_PASSING);
@@ -58,7 +61,7 @@ on_bus_acquired(GDBusConnection *connection,
                                                   &error);
 
         if (error || registration_id <= 0) {
-                g_critical("Couldn't register the feed server: %s\nQuitting...",
+                g_critical(_("Couldn't register the feed server: %s\nQuitting..."),
                            error->message);
                 g_error_free(error);
                 g_main_loop_quit(loop);

@@ -1,0 +1,17 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+[encoding: UTF-8]
+backend/feed-service.c
+backend/feed-test.c
+backend/gt-feed.c
+backend/gt-feed.h
+backend/gt-feed-server.c
+backend/gt-feed-server.h
+backend/gt-feed-server-private.h
+
+ui/gtk/traktor/constants.py
+ui/gtk/traktor/feed_server.py
+ui/gtk/traktor/__init__.py
+ui/gtk/traktor/preferencesdialog.py
+ui/gtk/traktor/traktorwindow.py
+

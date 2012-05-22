@@ -33,9 +33,32 @@ fi
 DBUS_SERVICES_DIR="$with_services_dir"
 AC_SUBST(DBUS_SERVICES_DIR)
 
+
+
+# ***********
+# Translation
+# ***********
+
+LOCALE_DIR='$localedir'
+AM_GLIB_DEFINE_LOCALEDIR([LOCALE_DIR])
+AM_GLIB_GNU_GETTEXT
+IT_PROG_INTLTOOL([0.40.0])
+
+GETTEXT_PACKAGE=AC_PACKAGE_NAME
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package.])
+
+AC_SUBST(CFLAGS)
+AC_SUBST(LDFLAGS)
+
+#
+#
+
 AC_CONFIG_FILES([
 	Makefile
 	backend/Makefile
+	po/Makefile.in
 ])
+
 
 AC_OUTPUT
